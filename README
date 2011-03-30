@@ -1,5 +1,24 @@
 ABOUT
 
+paraPDF is a fork of MuPDF.  It's simply intended to add a few features muPDF
+was missing which I was interested in, if I can't get them to upstream, and add
+some additional keybindings to make it feel more like home (home being vim).
+
+Specifically, here's the changes I'm workig on:
+ - Reload the PDF when receiving a SIGHUP.  This can be useful, for example,
+   when working with LaTeX or something else that outputs PDFs.
+ - Create a keybinding to invert the colors.  This can be useful if one uses a
+   dark color scheme.  It would be preferable to refrain from inverting images,
+   but that's likely to much work for the effort (and my capabilities).
+ - Add some bindings to make muPDF feel a bit more like vim.  Most notably,
+   ctrl-e, ctrl-y, ctrl-f and ctrl-b, but I may play with others
+
+muPDF's original README follows (with my addition to the copyright):
+
+-----
+
+ABOUT
+
 MuPDF is a lightweight PDF viewer and toolkit written in portable C.
 
 The renderer in MuPDF is tailored for high quality anti-aliased
@@ -22,6 +41,7 @@ LICENSE
 MuPDF -- PDF parsing, rendering and viewing toolkit.
 
 Copyright (C) 2006-2010 Artifex Software, Inc.
+Copyright (C) 2011 Daniel Thau
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
