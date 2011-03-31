@@ -644,6 +644,9 @@ void pdfapp_onkey(pdfapp_t *app, int c)
 		app->number[app->numberlen] = '\0';
 	}
 
+	if (c != 'g')
+		one_g = 0;
+
 	switch (c)
 	{
 
