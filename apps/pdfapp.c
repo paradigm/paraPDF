@@ -67,6 +67,9 @@ char *pdfapp_usage(pdfapp_t *app)
 		"n\t\t-- find next search result\n"
 		"N\t\t-- find previous search result\n"
 		"c\t\t-- toggle between color and grayscale\n"
+		"gg\t\t-- go to the first page\n"
+		"G\t\t-- go to the last page\n"
+		"v\t\t-- toggle inverted colors\n"
 	;
 }
 

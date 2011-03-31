@@ -11,7 +11,7 @@ Specifically, here's the changes I'm workig on:
    dark color scheme.  It would be preferable to refrain from inverting images,
    but that's likely to much work for the effort (and my capabilities).
  - Add some bindings to make muPDF feel a bit more like vim.  Most notably,
-   ctrl-e, ctrl-y, ctrl-f and ctrl-b, but I may play with others
+   ctrl-e, ctrl-y, ctrl-f, ctrl-b, and gg.
 
 muPDF's original README follows (with my addition to the copyright):
 
