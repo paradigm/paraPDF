@@ -88,6 +88,8 @@ static char *filename;
 static pdfapp_t gapp;
 static int closing = 0;
 
+static int one_g = 0;
+
 /*
  * Dialog boxes
  */

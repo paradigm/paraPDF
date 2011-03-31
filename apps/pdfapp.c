@@ -34,7 +34,8 @@ char *pdfapp_version(pdfapp_t *app)
 {
 	return
 		"MuPDF 0.8\n"
-		"Copyright 2006-2011 Artifex Sofware, Inc.\n";
+		"Copyright 2006-2011 Artifex Sofware, Inc.\n"
+		"Copyright 2011 Daniel Thau\n";
 }
 
 char *pdfapp_usage(pdfapp_t *app)
@@ -43,15 +44,15 @@ char *pdfapp_usage(pdfapp_t *app)
 		"L\t\t-- rotate left\n"
 		"R\t\t-- rotate right\n"
 		"h\t\t-- scroll left\n"
-		"j down\t\t-- scroll down\n"
-		"k up\t\t-- scroll up\n"
+		"j down ^e\t-- scroll down\n"
+		"k up ^y\t\t-- scroll up\n"
 		"l\t\t-- scroll right\n"
-		"+\t\t-- zoom in\n"
-		"-\t\t-- zoom out\n"
+		"+ i ^i\t\t-- zoom in\n"
+		"- o ^o\t\t-- zoom out\n"
 		"w\t\t-- shrinkwrap\n"
 		"r\t\t-- reload file\n"
-		". pgdn right space\t-- next page\n"
-		", pgup left b\t-- previous page\n"
+		". pgdn right space ^f\t-- next page\n"
+		", pgup left b ^b\t-- previous page\n"
 		">\t\t-- next 10 pages\n"
 		"<\t\t-- back 10 pages\n"
 		"m\t\t-- mark page for snap back\n"
@@ -647,6 +648,8 @@ void pdfapp_onkey(pdfapp_t *app, int c)
 	 * Zoom and rotate
 	 */
 
+	case 'i':
+	case '\t': // tab, aka ctrl-i
 	case '+':
 	case '=':
 		app->resolution *= ZOOMSTEP;
@@ -654,6 +657,8 @@ void pdfapp_onkey(pdfapp_t *app, int c)
 			app->resolution = MAXRES;
 		pdfapp_showpage(app, 0, 1, 1);
 		break;
+	case 'o':
+	case 15: // ctrl-o
 	case '-':
 		app->resolution /= ZOOMSTEP;
 		if (app->resolution < MINRES)
@@ -701,11 +706,13 @@ void pdfapp_onkey(pdfapp_t *app, int c)
 		pdfapp_showpage(app, 0, 0, 1);
 		break;
 
+	case 5: // ctrl-e
 	case 'j':
 		app->pany -= app->image->h / 10;
 		pdfapp_showpage(app, 0, 0, 1);
 		break;
 
+	case 25: // ctrl-y
 	case 'k':
 		app->pany += app->image->h / 10;
 		pdfapp_showpage(app, 0, 0, 1);
@@ -767,6 +774,7 @@ void pdfapp_onkey(pdfapp_t *app, int c)
 	 * Back and forth ...
 	 */
 
+	case 2: // ctrl-b
 	case ',':
 		panto = PAN_TO_BOTTOM;
 		if (app->numberlen > 0)
@@ -775,6 +783,7 @@ void pdfapp_onkey(pdfapp_t *app, int c)
 			app->pageno--;
 		break;
 
+	case 6: // ctrl-f
 	case '.':
 		panto = PAN_TO_TOP;
 		if (app->numberlen > 0)
