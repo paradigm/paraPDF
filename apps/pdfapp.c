@@ -6,6 +6,8 @@
 
 #define ZOOMSTEP 1.142857
 
+static char invert_colors = 0;
+
 enum panning
 {
 	DONT_PAN = 0,
@@ -316,6 +318,14 @@ static void pdfapp_showpage(pdfapp_t *app, int loadpage, int drawpage, int repai
 		idev = fz_newdrawdevice(app->cache, app->image);
 		fz_executedisplaylist(app->page->list, idev, ctm);
 		fz_freedevice(idev);
+
+		if (invert_colors)
+		{
+			int n = app->image->w * app->image->h * app->image->n;
+			unsigned char* p = app->image->samples;
+			while (n--)
+				*p++ = 255 - *p;
+		}
 	}
 
 	if (repaint)
@@ -642,6 +652,12 @@ void pdfapp_onkey(pdfapp_t *app, int c)
 
 	case 'q':
 		winclose(app);
+		break;
+
+	case 'v':
+		invert_colors = 1 - invert_colors;
+		oldpage = -1;
+		winrepaint(app);
 		break;
 
 	/*
