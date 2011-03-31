@@ -7,6 +7,7 @@
 #define ZOOMSTEP 1.142857
 
 static char invert_colors = 0;
+static char one_g = 0;
 
 enum panning
 {
@@ -748,8 +749,13 @@ void pdfapp_onkey(pdfapp_t *app, int c)
 	case '\r':
 		if (app->numberlen > 0)
 			app->pageno = atoi(app->number);
+		else if(!one_g)
+			one_g=1;
 		else
+		{
+			one_g=0;
 			app->pageno = 1;
+		}
 		break;
 
 	case 'G':
