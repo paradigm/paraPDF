@@ -12,6 +12,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+#include <signal.h>
+
 #define mupdf_icon_bitmap_16_width 16
 #define mupdf_icon_bitmap_16_height 16
 static unsigned char mupdf_icon_bitmap_16_bits[] = {
@@ -563,6 +565,15 @@ static void winresettmo(struct timeval *tmo, struct timeval *tmo_at)
 	tmo_at->tv_usec = 0;
 }
 
+void handle_signal(int signum)
+{
+	if (signum == SIGHUP)
+	{
+		winreloadfile(&gapp);
+		winrepaint(&gapp);
+	}
+}
+
 int main(int argc, char **argv)
 {
 	int c;
@@ -577,6 +588,8 @@ int main(int argc, char **argv)
 	struct timeval tmo, tmo_at;
 	int accelerate = 1;
 	int fd;
+
+	signal(SIGHUP, handle_signal);
 
 	while ((c = fz_getopt(argc, argv, "p:r:A")) != -1)
 	{
