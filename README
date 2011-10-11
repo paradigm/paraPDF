@@ -10,6 +10,7 @@ Specifically, here's the changes I'm workig on:
  - Create a keybinding to invert the colors.  This can be useful if one uses a
    dark color scheme.  It would be preferable to refrain from inverting images,
    but that's likely to much work for the effort (and my capabilities).
+ - Added a flag to start with colors inverted.
  - Add some bindings to make muPDF feel a bit more like vim.  Most notably,
    ctrl-e, ctrl-y, ctrl-f, ctrl-b, and gg.
 

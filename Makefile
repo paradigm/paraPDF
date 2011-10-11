@@ -6,7 +6,7 @@
 default: all
 
 build ?= debug
-prefix ?= /usr/local
+prefix ?= /usr/local/depot/paraPDF/
 
 OBJDIR := build/$(build)
 GENDIR := build/generated
