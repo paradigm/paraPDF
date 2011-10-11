@@ -520,6 +520,7 @@ static void usage(void)
 	fprintf(stderr, "\t-p -\tpassword\n");
 	fprintf(stderr, "\t-r -\tresolution\n");
 	fprintf(stderr, "\t-A\tdisable accelerated functions\n");
+	fprintf(stderr, "\t-V\tinvert colors\n");
 	exit(1);
 }
 
@@ -588,16 +589,18 @@ int main(int argc, char **argv)
 	struct timeval tmo, tmo_at;
 	int accelerate = 1;
 	int fd;
+	char invert_colors = 0;
 
 	signal(SIGHUP, handle_signal);
 
-	while ((c = fz_getopt(argc, argv, "p:r:A")) != -1)
+	while ((c = fz_getopt(argc, argv, "p:r:AV")) != -1)
 	{
 		switch (c)
 		{
 		case 'p': password = fz_optarg; break;
 		case 'r': resolution = atoi(fz_optarg); break;
 		case 'A': accelerate = 0; break;
+		case 'V': invert_colors = 1; break;
 		default: usage();
 		}
 	}
