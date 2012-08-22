@@ -140,9 +140,9 @@ static void winopen(void)
 	xchand = XCreateFontCursor(xdpy, XC_hand2);
 	xcwait = XCreateFontCursor(xdpy, XC_watch);
 
-	xbgcolor.red = 0x7000;
-	xbgcolor.green = 0x7000;
-	xbgcolor.blue = 0x7000;
+	xbgcolor.red = 0x0000;
+	xbgcolor.green = 0x0000;
+	xbgcolor.blue = 0x0000;
 
 	xshcolor.red = 0x4000;
 	xshcolor.green = 0x4000;

@@ -307,7 +307,9 @@ void winopen()
 	waitcurs = LoadCursor(NULL, IDC_WAIT);
 
 	/* And a background color */
-	bgbrush = CreateSolidBrush(RGB(0x70,0x70,0x70));
+	/*bgbrush = CreateSolidBrush(RGB(0x70,0x70,0x70));
+	shbrush = CreateSolidBrush(RGB(0x40,0x40,0x40));*/
+	bgbrush = CreateSolidBrush(RGB(0x00,0x00,0x00));
 	shbrush = CreateSolidBrush(RGB(0x40,0x40,0x40));
 
 	/* Init DIB info for buffer */
